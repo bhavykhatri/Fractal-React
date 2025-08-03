@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-npm install fractal-react-components
+npm install fractal-react
 ```
 
 ## Basic Usage
@@ -18,7 +18,7 @@ import {
   SierpinskiTriangle, 
   LSystem, 
   BarnsleyFern 
-} from 'fractal-react-components';
+} from 'fractal-react';
 ```
 
 ### 2. Use in Your React Component
@@ -85,7 +85,7 @@ function MyFractalApp() {
 ### 3. Using Presets
 
 ```tsx
-import { LSystem, lSystemPresets, juliaSetPresets } from 'fractal-react-components';
+import { LSystem, lSystemPresets, juliaSetPresets } from 'fractal-react';
 
 function PresetExample() {
   const treePreset = lSystemPresets.tree;
@@ -118,7 +118,7 @@ function PresetExample() {
 
 ```tsx
 import { useState } from 'react';
-import { MandelbrotSet } from 'fractal-react-components';
+import { MandelbrotSet } from 'fractal-react';
 
 function MandelbrotExplorer() {
   const [zoom, setZoom] = useState(1);
@@ -157,7 +157,7 @@ function MandelbrotExplorer() {
 
 ```tsx
 import { useState } from 'react';
-import { LSystem } from 'fractal-react-components';
+import { LSystem } from 'fractal-react';
 
 function LSystemGenerator() {
   const [axiom, setAxiom] = useState("F");
@@ -236,5 +236,5 @@ Available color schemes for Mandelbrot and Julia sets:
 All components are fully typed with TypeScript interfaces exported from the package.
 
 ```tsx
-import type { MandelbrotProps, JuliaProps, LSystemProps } from 'fractal-react-components';
+import type { MandelbrotProps, JuliaProps, LSystemProps } from 'fractal-react';
 ```

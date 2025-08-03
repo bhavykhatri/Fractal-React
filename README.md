@@ -5,13 +5,13 @@ A React component library for rendering beautiful fractal patterns including Man
 ## Installation
 
 ```bash
-npm install fractal-react-components
+npm install fractal-react
 ```
 
 ## Usage
 
 ```tsx
-import { MandelbrotSet, JuliaSet, KochCurve, SierpinskiTriangle, LSystem, BarnsleyFern } from 'fractal-react-components';
+import { MandelbrotSet, JuliaSet, KochCurve, SierpinskiTriangle, LSystem, BarnsleyFern } from 'fractal-react';
 
 function App() {
   return (

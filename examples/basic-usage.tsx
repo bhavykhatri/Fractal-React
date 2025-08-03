@@ -1,5 +1,5 @@
 import React from 'react';
-import { MandelbrotSet, JuliaSet, KochCurve, SierpinskiTriangle, LSystem, BarnsleyFern } from 'fractal-react-components';
+import { MandelbrotSet, JuliaSet, KochCurve, SierpinskiTriangle, LSystem, BarnsleyFern } from 'fractal-react';
 
 function App() {
   return (

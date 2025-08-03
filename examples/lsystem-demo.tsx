@@ -1,6 +1,6 @@
 import React from 'react';
-import { LSystem } from 'fractal-react-components';
-import { lSystemPresets } from 'fractal-react-components/dist/utils/presets';
+import { LSystem } from 'fractal-react';
+import { lSystemPresets } from 'fractal-react/dist/utils/presets';
 
 function LSystemDemo() {
   return (
