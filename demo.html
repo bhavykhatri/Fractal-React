@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fractal React Components Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .fractals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .fractal-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .fractal-card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .controls {
+            margin: 20px 0;
+        }
+        .controls label {
+            display: inline-block;
+            width: 100px;
+            text-align: left;
+        }
+        .controls input {
+            margin: 5px;
+        }
+        canvas {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Fractal React Components</h1>
+            <p>Interactive demo of fractal rendering components for React</p>
+        </div>
+
+        <div class="fractals-grid">
+            <div class="fractal-card">
+                <h3>Mandelbrot Set</h3>
+                <div id="mandelbrot-root"></div>
+                <div class="controls">
+                    <div>
+                        <label>Iterations:</label>
+                        <input type="range" id="mandelbrot-iterations" min="50" max="200" value="100">
+                        <span id="mandelbrot-iterations-value">100</span>
+                    </div>
+                    <div>
+                        <label>Color:</label>
+                        <select id="mandelbrot-color">
+                            <option value="default">Default</option>
+                            <option value="rainbow">Rainbow</option>
+                            <option value="fire">Fire</option>
+                            <option value="grayscale">Grayscale</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fractal-card">
+                <h3>Julia Set</h3>
+                <div id="julia-root"></div>
+                <div class="controls">
+                    <div>
+                        <label>Real part:</label>
+                        <input type="range" id="julia-real" min="-1" max="1" step="0.01" value="-0.7">
+                        <span id="julia-real-value">-0.7</span>
+                    </div>
+                    <div>
+                        <label>Imaginary:</label>
+                        <input type="range" id="julia-imaginary" min="-1" max="1" step="0.01" value="0.27">
+                        <span id="julia-imaginary-value">0.27</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fractal-card">
+                <h3>Koch Snowflake</h3>
+                <div id="koch-root"></div>
+                <div class="controls">
+                    <div>
+                        <label>Iterations:</label>
+                        <input type="range" id="koch-iterations" min="0" max="6" value="4">
+                        <span id="koch-iterations-value">4</span>
+                    </div>
+                    <div>
+                        <label>Color:</label>
+                        <input type="color" id="koch-color" value="#0066cc">
+                    </div>
+                </div>
+            </div>
+
+            <div class="fractal-card">
+                <h3>Sierpinski Triangle</h3>
+                <div id="sierpinski-root"></div>
+                <div class="controls">
+                    <div>
+                        <label>Iterations:</label>
+                        <input type="range" id="sierpinski-iterations" min="0" max="8" value="6">
+                        <span id="sierpinski-iterations-value">6</span>
+                    </div>
+                    <div>
+                        <label>Color:</label>
+                        <input type="color" id="sierpinski-color" value="#ff6600">
+                    </div>
+                </div>
+            </div>
+
+            <div class="fractal-card">
+                <h3>L-System</h3>
+                <div id="lsystem-root"></div>
+                <div class="controls">
+                    <div>
+                        <label>Preset:</label>
+                        <select id="lsystem-preset">
+                            <option value="tree">Tree</option>
+                            <option value="plant">Plant</option>
+                            <option value="fractalTree">Fractal Tree</option>
+                            <option value="dragonCurve">Dragon Curve</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Iterations:</label>
+                        <input type="range" id="lsystem-iterations" min="1" max="6" value="4">
+                        <span id="lsystem-iterations-value">4</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fractal-card">
+                <h3>Barnsley Fern</h3>
+                <div id="barnsley-root"></div>
+                <div class="controls">
+                    <div>
+                        <label>Points:</label>
+                        <input type="range" id="barnsley-points" min="5000" max="100000" step="5000" value="30000">
+                        <span id="barnsley-points-value">30000</span>
+                    </div>
+                    <div>
+                        <label>Color:</label>
+                        <input type="color" id="barnsley-color" value="#006400">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p style="text-align: center; color: #666;">
+                This demo requires the fractal-react-components package to be built and loaded.
+                <br>
+                Run <code>npm run build && npm run storybook</code> to see the interactive components.
+            </p>
+        </div>
+    </div>
+
+    <!-- This would be where you'd load the React components if they were built -->
+    <script>
+        // Update value displays when sliders change
+        document.getElementById('mandelbrot-iterations').addEventListener('input', function() {
+            document.getElementById('mandelbrot-iterations-value').textContent = this.value;
+        });
+        
+        document.getElementById('julia-real').addEventListener('input', function() {
+            document.getElementById('julia-real-value').textContent = this.value;
+        });
+        
+        document.getElementById('julia-imaginary').addEventListener('input', function() {
+            document.getElementById('julia-imaginary-value').textContent = this.value;
+        });
+        
+        document.getElementById('koch-iterations').addEventListener('input', function() {
+            document.getElementById('koch-iterations-value').textContent = this.value;
+        });
+        
+        document.getElementById('sierpinski-iterations').addEventListener('input', function() {
+            document.getElementById('sierpinski-iterations-value').textContent = this.value;
+        });
+        
+        document.getElementById('lsystem-iterations').addEventListener('input', function() {
+            document.getElementById('lsystem-iterations-value').textContent = this.value;
+        });
+        
+        document.getElementById('barnsley-points').addEventListener('input', function() {
+            document.getElementById('barnsley-points-value').textContent = this.value;
+        });
+    </script>
+</body>
+</html>
